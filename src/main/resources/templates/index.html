@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head th:replace="~{base :: common_head(_,~{::link})}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+  </head>
+  <body>
+    <nav th:fragment="navbar">
+      <a th:href="@{/}"><img src="/images/logo.png" alt="todo logo"/></a>
+      <div th:if="${#authorization.expression('isAnonymous()')}">
+        <a th:href="@{/login}" id="login">Login</a>
+        <a th:href="@{/register}" id="register" class="button">Start for free</a>
+      </div>
+      <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+        <span th:text="${#authentication.name}"></span>
+      </div>
+    </nav>
+    <main>
+      <h1>Organize your tasks</h1>
+      <p>Organize your life easier -- let's try our to-do app.</p>
+      <img src="/images/checklist.png" alt="a checklist"
+           sizes="(max-width: 320px) 320px, (max-width: 426px) 350px, 782px"
+           srcset="/images/checklist.png 782w, /images/checklist350w.png 350w">
+    </main>
+  </body>
+</html>

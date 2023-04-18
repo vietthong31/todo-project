@@ -1,0 +1,84 @@
+:root {
+  --primary-color: #0097B2;
+  --primary-color-01: rgba(0, 151, 178, 0.1);
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+nav {
+  background-color: rgba(0, 151, 178, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0.5em 2em;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+nav a:first-child {
+  margin-right: auto;
+
+}
+
+nav a {
+  text-decoration: initial;
+  color: black;
+  font-size: 1rem;
+}
+
+a#register {
+  margin-left: 10px;
+}
+
+a#login:hover {
+  color: var(--primary-color);
+}
+
+/* Form components */
+
+input {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+input:focus-visible {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+input[type="submit"]:hover {
+  cursor: pointer;
+}
+
+/* Classes */
+
+.button {
+  background-color: white;
+  color: var(--primary-color);
+  padding: 0.6rem 0.8rem;
+  border: 1px solid silver;
+  border-radius: 1rem;
+}
+
+.button:hover {
+  text-decoration: underline;
+}
+
+.button:active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+ul#errors li {
+  font-size: 0.8rem;
+  color: rgb(208 43 40);
+}
+
+ul#errors li:not(:last-child) {
+  margin-bottom: 5px;
+}
