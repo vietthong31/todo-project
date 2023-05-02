@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html th:replace="~{task_layout :: layout(~{::title}, ~{::main}, ~{::aside})}" lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Todo | Manage tasks</title>
+  </head>
+  <body>
+    <aside>
+      <ul id="lists">
+        <li class="home"><a th:href="@{/task}">All tasks</a></li>
+        <li>
+          <button type="button" class="button" id="new_list">New list</button>
+        </li>
+      </ul>
+    </aside>
+    <main>
+
+      <form th:action="@{/task/create}" method="post" class="new_task">
+        <div>
+          <label for="content">Content</label>
+          <input type="text" name="content" id="content">
+        </div>
+        <div>
+          <label for="due_date">Due date</label>
+          <input type="date" name="dueDate" id="due_date">
+        </div>
+        <input type="submit" class="button" value="Save">
+      </form>
+
+      <ul id="tasks">
+        <th:block th:each="task : ${tasks}">
+          <li th:class="${task.isCompleted} ? 'completed task' : 'task'" th:data-task-id="${task.id}">
+            <input type="checkbox" th:attr="checked=${task.isCompleted}">
+            <p class="task-content">
+              <span class="content" th:text="${task.content}"></span> <br>
+              <span class="dueDate" th:text="${task.dueDate}"></span>
+            </p>
+            <div class="action">
+              <a th:href="@{'/task/edit/' + ${task.id}}" aria-label="Edit" class="edit">
+                <img src="/images/icons/edit.svg" alt="">
+              </a>
+              <button type="button" aria-label="Delete" class="delete">
+                <img src="/images/icons/trash.svg" alt="">
+              </button>
+            </div>
+          </li>
+        </th:block>
+      </ul>
+
+    </main>
+  </body>
+</html>

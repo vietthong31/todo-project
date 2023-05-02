@@ -1,4 +1,4 @@
-@import "primary.css";
+
 
 body {
   background-color: hsl(210deg 7.69% 94.9%);
@@ -45,11 +45,6 @@ form + p {
   margin-top: 1rem;
   text-align: center;
   font-size: 0.8rem;
-}
-
-input {
-  font-family: Arial, sans-serif;
-  padding: 0.5rem 0 0.5rem 5px;
 }
 
 input[type="submit"] {

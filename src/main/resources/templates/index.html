@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head th:replace="~{base :: common_head(_,~{::link})}">
     <link rel="stylesheet" th:href="@{/css/index.css}">
   </head>
@@ -16,7 +16,10 @@
     </nav>
     <main>
       <h1>Organize your tasks</h1>
-      <p>Organize your life easier -- let's try our to-do app.</p>
+      <p>
+        Organize your life easier -- let's try our to-do app. <br>
+      </p>
+      <a th:href="@{/register}" class="button">Get started</a>
       <img src="/images/checklist.png" alt="a checklist"
            sizes="(max-width: 320px) 320px, (max-width: 426px) 350px, 782px"
            srcset="/images/checklist.png 782w, /images/checklist350w.png 350w">

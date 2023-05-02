@@ -16,15 +16,14 @@
         </div>
         <div>
           <label for="password">Password</label>
-          <input type="password" name="password" id="password" >
+          <input type="password" name="password" id="password">
         </div>
 
-        <input type="submit" value="Login" class="button">
+        <input type="submit" value="Login">
 
-<!--        <ul th:if="${#fields.hasErrors('*')}" id="errors">-->
-<!--          <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>-->
-<!--        </ul>-->
-        <p th:if="${param.error}">Invalid email or password</p>
+        <ul id="error" th:if="${param.error}">
+          <li>Invalid email or password</li>
+        </ul>
       </form>
 
       <p>Don't have an account? <a th:href="@{/register}">Register</a></p>

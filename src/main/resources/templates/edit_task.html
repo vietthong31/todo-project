@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html th:replace="~{task_layout :: layout(~{::title}, ~{::main}, ~{::aside})}" lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Todo | Edit task</title>
+  </head>
+  <body>
+    <aside th:replace="~{task::aside}"></aside>
+    <main>
+      <h1>Edit task</h1>
+      <form th:action="@{/task/edit}" method="post" class="edit_task">
+        <input type="hidden" name="id" th:value="${task.getId()}">
+        <div>
+          <label for="content">Content</label>
+          <textarea name="content" id="content" rows="10" th:text="${task.getContent()}"></textarea>
+        </div>
+        <div>
+          <label for="due_date">Due date</label>
+          <input type="date" name="dueDate" id="due_date" th:value="${task.getDueDate()}">
+        </div>
+        <label for="is_completed">
+          <input type="checkbox" name="isCompleted" id="is_completed" th:checked="${task.getIsCompleted()}">
+          Completed
+        </label>
+        <input type="submit" class="button" value="Save">
+      </form>
+    </main>
+  </body>
+</html>

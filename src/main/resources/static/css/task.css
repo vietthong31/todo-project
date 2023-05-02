@@ -1,0 +1,208 @@
+:root {
+  --checkbox-width: 1.8em;
+}
+
+#grid-container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 20% auto;
+  grid-template-rows: max-content auto;
+}
+
+/* GENERAL STYLES */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  grid-column: 1/-1;
+  z-index: 2;
+}
+
+form {
+  background-color: #e5e5e5;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em 1em;
+  border: 1px solid #aaa;
+  border-radius: 0.5em;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+/* ASIDE */
+aside {
+  background-color: #fcfcfc;
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 2em 0;
+}
+
+aside a {
+  text-decoration: none;
+}
+
+#lists {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 2em;
+  left: 2em;
+}
+
+#lists li {
+  padding: 1em;
+}
+
+#lists li {
+  padding-left: 2em;
+  background-position: center left 0.3em;
+  background-repeat: no-repeat;
+  background-size: 1.4em;
+}
+
+#lists li.selected {
+  border-radius: 0.5em;
+  background-color: #eee;
+}
+
+#lists li.user_list {
+  background-image: url("../images/icons/circle_list.svg");
+}
+
+#lists li.home {
+  background-image: url("../images/icons/home.svg");
+}
+
+/* MAIN */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em;
+}
+
+/* FORM */
+.new_task div:first-of-type {
+  flex-grow: 1;
+}
+.new_task div input {
+  padding: 0.5em;
+}
+.new_task div label {
+  font-size: 0.9em;
+}
+.new_task input[type="submit"] {
+  font-size: inherit;
+  align-self: flex-end;
+}
+
+.edit_task {
+  flex-direction: column;
+  width: 50%;
+  align-items: normal;
+}
+
+.edit_task input[type='checkbox'] {
+  display: inline-grid;
+}
+
+/* MANAGE TASKS */
+ul#tasks {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+}
+
+li.task {
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  background-color: var(--primary-color-01);
+  display: grid;
+  grid-template-columns: max-content auto max-content;
+  gap: 1em;
+}
+
+.task p {
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.task.completed p {
+  text-decoration: line-through;
+  color: #757575;
+}
+
+.dueDate {
+  font-size: 0.9em;
+  color: var(--green);
+}
+
+.dueDate.overdue {
+  color: var(--red);
+}
+
+.action {
+  margin-left: auto;
+  align-self: center;
+}
+
+.action button {
+  padding: 0;
+  margin-left: 1em;
+  border: none;
+  background-color: transparent;
+}
+
+.action img {
+  width: 26px;
+}
+
+.action .edit:hover img {
+  filter: invert(54%) sepia(83%) saturate(3514%) hue-rotate(87deg) brightness(119%) contrast(118%);
+}
+
+.action .delete:hover img {
+  filter: invert(11%) sepia(79%) saturate(6832%) hue-rotate(358deg) brightness(92%) contrast(114%);
+}
+
+/* CUSTOM CHECKBOX STYLE */
+input[type='checkbox'] {
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 100%;
+  display: grid;
+  place-content: center;
+  align-self: baseline;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.9em;
+  height: 0.9em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em white;
+}
+
+input:checked {
+  background-color: var(--green);
+  border-color: var(--green);
+}
+
+input:checked::before {
+  transform: scale(1);
+}

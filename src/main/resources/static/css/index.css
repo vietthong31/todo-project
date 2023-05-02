@@ -1,4 +1,4 @@
-@import "primary.css";
+
 
 body {
   min-height: 100vh;
@@ -15,38 +15,11 @@ main {
 h1 {
   font-weight: bold;
   font-size: 4rem;
-  animation-duration: 3s;
-  animation-name: fade;
-  animation-fill-mode: forwards;
 }
 
 h1 + p {
   font-size: 1.4rem;
   margin: 1rem 0;
-}
-
-
-@keyframes fade {
-  from {
-    color: white;
-  }
-
-  70% {
-    color: black;
-  }
-
-  80% {
-    color: #101010;
-  }
-
-  85% {
-    color: #202020;
-  }
-
-  to {
-    color: #303030;
-    text-shadow: white 1px 0 10px;
-  }
 }
 
 @media screen and (max-width: 376px) {

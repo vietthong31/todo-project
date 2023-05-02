@@ -5,21 +5,27 @@ import com.example.todo.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 
 import java.util.*;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
+        return new SecurityEvaluationContextExtension();
     }
 
     @Bean
@@ -34,9 +40,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests()
-                   .requestMatchers("/", "/register", "/login", "/**").permitAll()
-                   .requestMatchers("/design").hasRole("USER")
-                   .and().formLogin().usernameParameter("email").loginPage("/login").defaultSuccessUrl("/", true)
+                   .requestMatchers("/task/**", "/account/**").authenticated()
+                   .requestMatchers("/", "/**").permitAll()
+                   .and()
+                       .formLogin()
+                       .usernameParameter("email")
+                       .loginPage("/login")
+                       .defaultSuccessUrl("/", true)
                    .and().build();
     }
 

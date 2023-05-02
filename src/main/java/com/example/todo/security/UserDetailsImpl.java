@@ -20,6 +20,18 @@ public class UserDetailsImpl implements UserDetails {
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
+    public Long getId() {
+        return user.getId();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public String getEmail() {
+        return user.getEmail();
+    }
+
     @Override
     public String getPassword() {
         return user.getEncryptedPassword();
