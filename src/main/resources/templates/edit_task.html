@@ -9,11 +9,11 @@
       <h1>Edit task</h1>
       <form th:action="@{/task/edit}" method="post" class="edit_task">
         <input type="hidden" name="id" th:value="${task.getId()}">
-        <div>
+        <div class="component">
           <label for="content">Content</label>
           <textarea name="content" id="content" rows="10" th:text="${task.getContent()}"></textarea>
         </div>
-        <div>
+        <div class="component">
           <label for="due_date">Due date</label>
           <input type="date" name="dueDate" id="due_date" th:value="${task.getDueDate()}">
         </div>

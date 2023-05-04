@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Data
 public class RegistrationForm {
     @Email
+    @NotBlank(message = "Email must not be blank.")
     private String email;
 
     @NotBlank(message = "Username must not be blank.")

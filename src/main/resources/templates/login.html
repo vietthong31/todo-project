@@ -10,18 +10,18 @@
     <main>
       <h1>Login</h1>
       <form th:action="@{/login}" method="post">
-        <div>
+        <div class="component">
           <label for="email">Email</label>
           <input type="email" name="email" id="email">
         </div>
-        <div>
+        <div class="component">
           <label for="password">Password</label>
           <input type="password" name="password" id="password">
         </div>
 
         <input type="submit" value="Login">
 
-        <ul id="error" th:if="${param.error}">
+        <ul class="errors" th:if="${param.error}">
           <li>Invalid email or password</li>
         </ul>
       </form>

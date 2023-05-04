@@ -12,21 +12,21 @@
 
         <h1>Create an account</h1>
         <form th:action="@{/register}" method="post" th:object="${form}">
-          <div>
+          <div class="component">
             <label for="email">Email</label>
             <input type="email" th:field="*{email}" id="email" required autofocus>
           </div>
-          <div>
+          <div class="component">
             <label for="username">Username</label>
             <input type="text" th:field="*{username}" id="username" required>
           </div>
-          <div>
+          <div class="component">
             <label for="password">Password</label>
             <input type="password" th:field="*{password}" id="password" required minlength="8" maxlength="255">
           </div>
           <input type="submit" value="Register" class="button">
 
-          <ul th:if="${#fields.hasErrors('*')}" id="errors">
+          <ul th:if="${#fields.hasErrors('*')}" class="errors">
             <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
           </ul>
         </form>

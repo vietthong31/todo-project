@@ -25,7 +25,7 @@ nav {
 }
 
 form {
-  background-color: #e5e5e5;
+  background-color: var(--background);
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -34,21 +34,11 @@ form {
   border-radius: 0.5em;
 }
 
-form div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2em;
-}
-
 /* ASIDE */
 aside {
   background-color: #fcfcfc;
   border-right: 1px solid rgba(0, 0, 0, 0.3);
   padding: 2em 0;
-}
-
-aside a {
-  text-decoration: none;
 }
 
 #lists {
@@ -92,17 +82,10 @@ main {
 }
 
 /* FORM */
-.new_task div:first-of-type {
+.new_task .component:first-of-type {
   flex-grow: 1;
 }
-.new_task div input {
-  padding: 0.5em;
-}
-.new_task div label {
-  font-size: 0.9em;
-}
 .new_task input[type="submit"] {
-  font-size: inherit;
   align-self: flex-end;
 }
 

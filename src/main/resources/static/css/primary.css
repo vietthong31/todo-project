@@ -1,7 +1,10 @@
 :root {
-  --primary-color: #0097B2;
-  --primary-color-01: rgba(0, 151, 178, 0.1);
-  --red: rgb(208 57 62);
+  --primary-color: #19A7CE;
+  --primary-color-01: rgba(175, 211, 226, 0.5);
+  --primary-color-bold: #146C94;
+  --primary-color-08: rgba(0, 151, 178, 0.8);
+  --background: #F6F1F1;
+  --red: #ED2B2A;
   --green: rgb(60, 160, 100);
 }
 
@@ -13,40 +16,55 @@ body {
   font-family: Arial, sans-serif;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2.3rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
 /* NAVBAR */
 nav {
-  background-color: rgba(0, 151, 178, 0.1);
+  background-color: var(--primary-color-01);
   display: flex;
   align-items: center;
+  gap: 0.5em;
   padding: 0.5em 2em;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
 }
 
-nav a:first-child {
+nav :first-child {
   margin-right: auto;
-
 }
 
-nav a {
-  text-decoration: initial;
-  color: black;
-  font-size: 1rem;
-}
-
-a#register {
-  margin-left: 10px;
-}
-
-a#login:hover {
-  color: var(--primary-color);
+a.button.register {
+  background-color: var(--primary-color);
+  color: white;
 }
 
 /* Form components */
 
-input, textarea {
+input,
+textarea {
   padding: 0.5rem;
   border: 1px solid black;
-  font-size: 0.9em;
+  font-size: 1rem;
   border-radius: 0.5em;
   font-family: inherit;
 }
@@ -55,54 +73,67 @@ textarea {
   resize: none;
 }
 
-input[type="date"], input[type="datetime-local"] {
+input[type="date"],
+input[type="datetime-local"] {
   font-family: monospace;
 }
 
-input:focus-visible, textarea:focus-visible {
+input:focus-visible,
+textarea:focus-visible {
   outline: none;
   border-color: var(--primary-color);
 }
 
-input[type="submit"]:hover {
-  cursor: pointer;
+::-webkit-datetime-edit-fields-wrapper,
+::-webkit-calendar-picker-indicator {
+  padding: 0;
+}
+
+form div.component {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
 }
 
 /* Classes */
 
-.button, input[type="submit"] {
+.button,
+input[type="submit"] {
   display: inline-block;
   background-color: white;
   color: var(--primary-color);
   padding: 0.5em;
-  border: 1px solid hsl(0 0% 30%);
+  border: 1px solid var(--primary-color);
   border-radius: 0.5em;
 }
 
-.button:hover, input[type="submit"]:hover {
-  border-color: var(--primary-color);
+.button:hover,
+input[type="submit"]:hover {
+  box-shadow: 2px 2px 1px #146C94;
+  cursor: pointer;
 }
 
-.button:active, input[type="submit"]:active {
-  background-color: var(--primary-color);
-  color: white;
+.button:active,
+input[type="submit"]:active {
+  transform: translateX(2px) translateY(2px);
+  box-shadow: none;
 }
 
 a.button {
   text-decoration: none;
 }
 
-ul#errors {
+.errors {
   list-style-type: disc;
   list-style-position: inside;
 }
 
-ul#errors li {
+.errors li {
   font-size: 0.8rem;
   height: 0.8rem;
   color: var(--red);
 }
 
-ul#errors li:not(:last-child) {
+.errors li:not(:last-child) {
   margin-bottom: 5px;
 }

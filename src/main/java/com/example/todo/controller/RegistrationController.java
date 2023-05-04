@@ -8,7 +8,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/register")
@@ -38,7 +41,6 @@ public class RegistrationController {
     @PostMapping
     public String processRegistration(@Valid @ModelAttribute(name = "form") RegistrationForm form, Errors errors) {
         if (errors.hasErrors()) {
-            System.out.println(errors.getErrorCount());
             return "register";
         }
         userRepository.save(form.toUser(passwordEncoder));

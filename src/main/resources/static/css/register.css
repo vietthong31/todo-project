@@ -1,11 +1,10 @@
 
 
 body {
-  background-color: hsl(210deg 7.69% 94.9%);
+  background-color: var(--background);
 }
 
 h1 {
-  font-size: 2rem;
   margin-bottom: 10px;
   text-align: right;
 }
@@ -33,12 +32,6 @@ form {
   row-gap: 1rem;
   margin: 2rem 0;
   width: 100%;
-}
-
-form > div {
-  display: flex;
-  flex-direction: column;
-  row-gap: 6px;
 }
 
 form + p {
