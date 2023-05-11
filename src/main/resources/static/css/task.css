@@ -34,43 +34,79 @@ form {
   border-radius: 0.5em;
 }
 
+.action img {
+  vertical-align: middle;
+}
+
 /* ASIDE */
 aside {
-  background-color: #fcfcfc;
+  background-color: var(--background);
   border-right: 1px solid rgba(0, 0, 0, 0.3);
   padding: 2em 0;
 }
 
-#lists {
-  display: flex;
-  flex-direction: column;
+aside a {
+  color: black;
+}
+
+aside > div {
+  height: 100%;
   position: sticky;
   top: 2em;
   left: 2em;
 }
 
-#lists li {
-  padding: 1em;
+aside button {
+  margin-left: 0.5rem;
 }
 
-#lists li {
-  padding-left: 2em;
-  background-position: center left 0.3em;
+.lists {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  max-height: 80vh;
+  overflow: hidden auto;
+  margin-bottom: 1em;
+}
+
+.lists .action img {
+  width: 1.5em;
+}
+
+.lists .action {
+  position: relative;
+  right: -100%;
+}
+
+.lists li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 0.5em 0.5em 2em;
+  background-position: 0.5em center;
   background-repeat: no-repeat;
-  background-size: 1.4em;
+  background-size: 1.1rem;
 }
 
-#lists li.selected {
-  border-radius: 0.5em;
-  background-color: #eee;
+.lists li:hover {
+  background-color: #98B4AA;
+  cursor: pointer;
 }
 
-#lists li.user_list {
+.lists li:hover .action {
+  right: 0;
+}
+
+.lists li[data-list-id] {
   background-image: url("../images/icons/circle_list.svg");
 }
 
-#lists li.home {
+.lists li[data-category='today'] {
   background-image: url("../images/icons/home.svg");
+}
+
+li#selected {
+  background-color: #98B4AA;
 }
 
 /* MAIN */
@@ -89,7 +125,8 @@ main {
   align-self: flex-end;
 }
 
-.edit_task {
+.edit_task,
+.edit_list {
   flex-direction: column;
   width: 50%;
   align-items: normal;
@@ -134,7 +171,7 @@ li.task {
   color: var(--red);
 }
 
-.action {
+.task .action {
   margin-left: auto;
   align-self: center;
 }
@@ -146,7 +183,7 @@ li.task {
   background-color: transparent;
 }
 
-.action img {
+.task .action img {
   width: 26px;
 }
 
@@ -172,8 +209,8 @@ input[type='checkbox'] {
 
 input[type="checkbox"]::before {
   content: "";
-  width: 0.9em;
-  height: 0.9em;
+  width: 0.8em;
+  height: 0.8em;
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
   transform: scale(0);
   transform-origin: bottom left;

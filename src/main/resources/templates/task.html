@@ -1,50 +1,59 @@
 <!DOCTYPE html>
-<html th:replace="~{task_layout :: layout(~{::title}, ~{::main}, ~{::aside})}" lang="en"
+<html th:replace="~{task_layout :: layout(~{::title}, ~{::main}, ~{::aside})}"
+      lang="en"
       xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Todo | Manage tasks</title>
   </head>
   <body>
     <aside>
-      <ul id="lists">
-        <li class="home"><a th:href="@{/task}">All tasks</a></li>
-        <li>
-          <button type="button" class="button" id="new_list">New list</button>
-        </li>
-      </ul>
+      <div>
+        <ul class="lists">
+          <li class="today" data-category="today">Today</li>
+          <th:block th:each="list : ${lists}">
+            <li th:data-list-id="${list.id}">
+              <span th:text="${list.title}"></span>
+              <div class="action">
+                <button type="button" aria-label="Edit" class="edit">
+                  <img src="/images/icons/edit.svg" alt="">
+                </button>
+                <button type="button" aria-label="Delete" class="delete">
+                  <img src="/images/icons/trash.svg" alt="">
+                </button>
+              </div>
+            </li>
+          </th:block>
+        </ul>
+        <button type="button" class="button new">New list</button>
+      </div>
     </aside>
     <main>
 
-      <form th:action="@{/task/create}" method="post" class="new_task">
-        <div class="component">
-          <label for="content">Content</label>
-          <input type="text" name="content" id="content">
-        </div>
-        <div class="component">
-          <label for="due_date">Due date</label>
-          <input type="date" name="dueDate" id="due_date">
-        </div>
-        <input type="submit" class="button" value="Save">
-      </form>
+      <th:block th:if="${listId}">
+        <form th:action="@{/tasks}" method="post" class="new_task">
+          <div class="component">
+            <label for="content">Content</label>
+            <input type="text" name="content" id="content">
+          </div>
+          <div class="component">
+            <label for="due_date">Due date</label>
+            <input type="datetime-local" name="dueDate" id="due_date">
+          </div>
+          <input type="number" name="listId" th:value="${listId}" hidden>
+          <input type="submit" class="button" value="Save">
+        </form>
+      </th:block>
 
       <ul id="tasks">
-        <th:block th:each="task : ${tasks}">
-          <li th:class="${task.isCompleted} ? 'completed task' : 'task'" th:data-task-id="${task.id}">
-            <input type="checkbox" th:attr="checked=${task.isCompleted}">
-            <p class="task-content">
-              <span class="content" th:text="${task.content}"></span> <br>
-              <span class="dueDate" th:text="${task.dueDate}"></span>
-            </p>
-            <div class="action">
-              <a th:href="@{'/task/edit/' + ${task.id}}" aria-label="Edit" class="edit">
-                <img src="/images/icons/edit.svg" alt="">
-              </a>
-              <button type="button" aria-label="Delete" class="delete">
-                <img src="/images/icons/trash.svg" alt="">
-              </button>
-            </div>
-          </li>
-        </th:block>
+        <li th:each="task : ${tasks}" th:class="${task.isCompleted} ? 'completed task' : 'task'"
+            th:data-task-id="${task.id}">
+          <input type="checkbox" th:attr="checked=${task.isCompleted}">
+          <p class="task-content">
+            <span class="content" th:text="${task.content}"></span> <br>
+            <span class="dueDate" th:text="${task.dueDate}"></span>
+          </p>
+          <div th:replace="~{::.action}"></div>
+        </li>
       </ul>
 
     </main>

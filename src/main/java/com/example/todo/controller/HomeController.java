@@ -17,12 +17,12 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Authentication auth) {
-        return (userService.isUserLoggedIn(auth)) ? "redirect:/task" : "index";
+        return (userService.isUserLoggedIn(auth)) ? "redirect:/manage/today" : "index";
     }
 
     @GetMapping("/login")
     public String login(Authentication auth) {
-        return userService.isUserLoggedIn(auth) ? "redirect:/" : "login";
+        return userService.isUserLoggedIn(auth) ? "redirect:/manage/today" : "login";
     }
 
 }

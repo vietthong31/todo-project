@@ -32,7 +32,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return email -> {
             Optional<User> user = userRepository.findByEmail(email);
-            if (user.isPresent()) return new UserDetailsImpl(user.get());
+            if (user.isPresent()) return user.get();
             throw new UsernameNotFoundException(email + " not found");
         };
     }
@@ -40,13 +40,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests()
-                   .requestMatchers("/task/**", "/account/**").authenticated()
+                   .requestMatchers("/task/**", "/list/**", "/manage/**", "/account/**").authenticated()
                    .requestMatchers("/", "/**").permitAll()
                    .and()
                        .formLogin()
                        .usernameParameter("email")
                        .loginPage("/login")
-                       .defaultSuccessUrl("/", true)
+                       .defaultSuccessUrl("/manage/today")
                    .and().build();
     }
 

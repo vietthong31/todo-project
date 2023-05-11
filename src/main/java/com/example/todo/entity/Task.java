@@ -1,17 +1,16 @@
 package com.example.todo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"list", "createDate", "updateDate"})
 public class Task {
 
     @Id
@@ -19,18 +18,15 @@ public class Task {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "list_id", nullable = false)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @JsonIgnore
-    @NotNull
-    private User user;
+    private List list;
 
-    @NotNull
-    @NotBlank(message = "Task content must not be blank")
     private String content;
-    private LocalDate dueDate;
-    private LocalDate createDate;
+    private LocalDateTime dueDate;
+    private LocalDateTime createDate;
+    private LocalDateTime updateDate;
     private boolean isCompleted;
 
     public boolean getIsCompleted() {
@@ -38,6 +34,17 @@ public class Task {
     }
 
     public void setIsCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
+    }
+
+    public Task(List list, String content, LocalDateTime dueDate) {
+        this.list = list;
+        this.content = content;
+        this.dueDate = dueDate;
+    }
+
+    public Task(List list, String content, LocalDateTime dueDate, boolean isCompleted) {
+        this(list, content, dueDate);
         this.isCompleted = isCompleted;
     }
 }

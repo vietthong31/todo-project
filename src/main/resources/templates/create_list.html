@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html th:replace="~{task_layout :: layout(~{::title}, ~{::main}, ~{::aside})}"
+      lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Todo | Create new list</title>
+  </head>
+  <body>
+    <aside th:replace="~{task::aside}"></aside>
+    <main>
+      <h1>Create a list</h1>
+      <form th:action="@{/list/create}" method="post" class="edit_list">
+        <div class="component">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title">
+        </div>
+        <input type="submit" class="button" value="Save">
+      </form>
+    </main>
+  </body>
+</html>
