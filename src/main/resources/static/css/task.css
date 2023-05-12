@@ -89,7 +89,7 @@ aside button {
 }
 
 .lists li:hover {
-  background-color: #98B4AA;
+  background-color: var(--list-selected);
   cursor: pointer;
 }
 
@@ -106,7 +106,8 @@ aside button {
 }
 
 li#selected {
-  background-color: #98B4AA;
+  background-color: var(--list-selected);
+  font-weight: bold;
 }
 
 /* MAIN */

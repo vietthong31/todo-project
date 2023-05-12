@@ -10,9 +10,19 @@
         <a th:href="@{/login}" class="login button">Login</a>
         <a th:href="@{/register}" class="register button">Start for free</a>
       </th:block>
-      <div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
-        <span th:text="${#authentication.name}"></span>
-      </div>
+      <details th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+        <summary>
+          <span th:text="${#authentication.name}"></span>
+          <img src="/images/icons/arrow_down.svg" alt="" width="16">
+        </summary>
+        <ul class="menu">
+          <li><a th:href="@{/settings/account}">Settings</a></li>
+          <li class="logout">
+            <span>Logout</span>
+            <form th:action="@{/logout}" method="post" class="logout" hidden></form>
+          </li>
+        </ul>
+      </details>
     </nav>
     <main>
       <h1>Organize your tasks</h1>

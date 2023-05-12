@@ -6,6 +6,12 @@
   --background: #F6F1F1;
   --red: #ED2B2A;
   --green: rgb(60, 160, 100);
+  --selected: #eee;
+  --list-selected: #ccc;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 html {
@@ -24,19 +30,23 @@ h4 {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
 }
 
 h3 {
-  font-size: 2.3rem;
+  font-size: 1.2rem;
 }
 
 h4 {
-  font-size: 2rem;
+  font-size: 1rem;
+}
+
+a {
+  text-decoration: none;
 }
 
 button:hover {
@@ -53,13 +63,60 @@ nav {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
 }
 
-nav :first-child {
+nav > :first-child {
   margin-right: auto;
 }
 
 a.button.register {
   background-color: var(--primary-color);
   color: white;
+}
+
+
+details {
+  position: relative;
+  cursor: pointer;
+}
+
+details[open] summary::before {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  content: " ";
+  background: transparent;
+  cursor: default;
+}
+
+summary {
+  display: block;
+}
+
+details .menu {
+  background-color: white;
+  width: 150%;
+  padding: 1em 0;
+  border: 1px solid #d0d7de;
+  border-radius: 0.5em;
+  position: absolute;
+  top: 130%;
+  right: 0;
+  cursor: default;
+}
+
+.menu li > * {
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+  color: black;
+  cursor: pointer;
+}
+
+.menu li:hover {
+  color: white;
+  background-color: var(--selected);
 }
 
 /* Form components */

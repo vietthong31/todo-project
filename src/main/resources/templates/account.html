@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html th:replace="~{settings_layout :: layout(~{::title}, ~{::main})}" lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>Your account</title>
+  </head>
+  <body>
+    <main>
+      <h1>Your account</h1>
+      <form action="">
+        <div class="component">
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" th:value="${#authentication.name}">
+        </div>
+        <div class="component">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" th:value="${#authentication.principal.email}">
+        </div>
+        <input type="submit" value="Update">
+      </form>
+    </main>
+  </body>
+</html>

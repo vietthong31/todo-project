@@ -1,0 +1,46 @@
+#settings {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  gap: 2em;
+  margin: 2em 20% 0 20%;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+}
+
+aside a {
+  padding: 0.5em 0 0.5em 0.5em;
+  color: black;
+  border-radius: 0.5em;
+}
+
+aside a.selected {
+  font-weight: bold;
+  background-color: var(--selected);
+}
+
+aside a:hover {
+  background-color: var(--selected);
+}
+
+form {
+  margin-top: 1rem;
+}
+
+.component {
+  margin-bottom: 1rem;
+}
+
+.component input {
+  width: 60%;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  #settings {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    margin: 2em 1em 0 1em;
+  }
+}

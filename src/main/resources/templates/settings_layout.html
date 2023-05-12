@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html th:fragment="layout(title, main_content, aside)" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html th:fragment="layout(title, main_content)" lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +8,20 @@
 
     <link rel="stylesheet" th:href="@{/css/reset-css.css}">
     <link rel="stylesheet" th:href="@{/css/primary.css}">
-    <link rel="stylesheet" th:href="@{/css/task.css}">
-    <title th:replace="${title}">Todo | Manage tasks</title>
+    <link rel="stylesheet" th:href="@{/css/settings.css}">
+    <title th:replace="${title}"></title>
     <script src="/scripts/jquery-3.6.4.js"></script>
   </head>
   <body>
-    <div id="grid-container">
-      <nav th:replace="~{index :: navbar}"></nav>
-      <aside th:replace="${aside}"></aside>
-
+    <nav th:replace="~{index :: navbar}"></nav>
+    <div id="settings">
+      <aside>
+        <a th:href="@{/settings/account}">Your account</a>
+        <a th:href="@{/settings/password}">Password</a>
+      </aside>
       <main th:replace="${main_content}"></main>
     </div>
-    <script src="/scripts/script.js"></script>
     <script src="/scripts/logout.js"></script>
+    <script src="/scripts/settings.js"></script>
   </body>
 </html>

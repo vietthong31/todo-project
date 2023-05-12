@@ -40,13 +40,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests()
-                   .requestMatchers("/task/**", "/list/**", "/manage/**", "/account/**").authenticated()
+                   .requestMatchers("/task/**", "/list/**", "/manage/**", "/settings/**").authenticated()
                    .requestMatchers("/", "/**").permitAll()
                    .and()
                        .formLogin()
                        .usernameParameter("email")
                        .loginPage("/login")
                        .defaultSuccessUrl("/manage/today")
+                   .and()
+                       .logout()
+                       .logoutUrl("/logout")
+                       .logoutSuccessUrl("/")
+                       .invalidateHttpSession(true)
                    .and().build();
     }
 
