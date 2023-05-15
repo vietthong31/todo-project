@@ -21,7 +21,7 @@ public class UserService {
         return auth != null && auth.isAuthenticated();
     }
 
-    public void registerNewUserAccount(User user) {
+    public void save(User user) {
         repository.save(user);
     }
 
@@ -35,4 +35,6 @@ public class UserService {
         }
         return messages;
     }
+
+
 }

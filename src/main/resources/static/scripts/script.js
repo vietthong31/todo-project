@@ -87,7 +87,7 @@ const dom = {
 const util = {
     checkOverdue: function (dateString) {
         const dueDate = Date.parse(dateString);
-        const start = new Date().setHours(0, 0, 0, 0);
+        const start = new Date();
         return !isNaN(dueDate) && dueDate < start;
     }
 }

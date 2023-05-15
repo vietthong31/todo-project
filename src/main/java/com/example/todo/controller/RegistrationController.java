@@ -49,7 +49,7 @@ public class RegistrationController {
         if (result.hasErrors()) {
             return "register";
         }
-        userService.registerNewUserAccount(user);
+        userService.save(user);
         return "redirect:/login";
     }
 
